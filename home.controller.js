@@ -155,6 +155,7 @@
 			canvas.addEventListener("touchmove", handleMove, false);
 
 			function handleStart(ev) {
+				ev.preventDefault();
 				down = true;
 			    sx = ev.clientX;
 			    sy = ev.clientY;
@@ -166,6 +167,7 @@
 
 			function handleMove(ev) {
 				if (down) {
+					ev.preventDefault();
 			        var dx = ev.clientX - sx;
 			        var dy = ev.clientY - sy;
 			        scatterPlot.rotation.y += dx * 0.01;
