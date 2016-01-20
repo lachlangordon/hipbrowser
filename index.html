@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+	<meta charset="utf-8" />
+	<title>HIP Star Map</title>
+	<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script src="three.min.js"></script>
+
+	<div class="header">
+		<h1>HIP Star Map</h1>
+	</div>
+
+	<div ng-view></div>
+
+	<script src="//code.angularjs.org/1.2.20/angular.js"></script>
+	<script src="//code.angularjs.org/1.2.20/angular-route.js"></script>
+
+	 <script src="app.js"></script>
+
+	 <script src="stars.service.js"></script>
+	 <script src="home.controller.js"></script>
+	 <script src="star.controller.js"></script>
+
+</body>
+
+</html>
