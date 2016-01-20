@@ -147,25 +147,44 @@
 			var down = false;
 			var sx = 0,
 			    sy = 0;
-			    
+
+			var canvas_el = document.getElementsByTagName("canvas")[0];
+			canvas.addEventListener("touchstart", handleStart, false);
+			canvas.addEventListener("touchend", handleEnd, false);
+			canvas.addEventListener("touchcancel", handleEnd, false);
+			canvas.addEventListener("touchmove", handleMove, false);
+
+			function handleStart(ev) {
+				down = true;
+			    sx = ev.clientX;
+			    sy = ev.clientY;
+			}
+
+			function handleEnd(ev) {
+				down = false;
+			}
+
+			function handleMove(ev) {
+				if (down) {
+			        var dx = ev.clientX - sx;
+			        var dy = ev.clientY - sy;
+			        scatterPlot.rotation.y += dx * 0.01;
+			        camera.position.y += dy;
+			        sx += dx;
+			        sy += dy;
+			    }
+			}
+    
 			window.onmousedown = function(ev) {
 			    down = true;
 			    sx = ev.clientX;
 			    sy = ev.clientY;
 			};
 
-			window.touchstart = function(ev) {
-			    down = true;
-			    sx = ev.clientX;
-			    sy = ev.clientY;
-			};
 			window.onmouseup = function() {
 			    down = false;
 			};
 
-			window.touchend = function() {
-			    down = false;
-			};
 			window.onmousemove = function(ev) {
 			    if (down) {
 			        var dx = ev.clientX - sx;
@@ -177,16 +196,6 @@
 			    }
 			}
 
-			window.touchmove = function(ev) {
-			    if (down) {
-			        var dx = ev.clientX - sx;
-			        var dy = ev.clientY - sy;
-			        scatterPlot.rotation.y += dx * 0.01;
-			        camera.position.y += dy;
-			        sx += dx;
-			        sy += dy;
-			    }
-			}
 			var animating = false;
 			window.ondblclick = function() {
 			    animating = !animating;
