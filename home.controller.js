@@ -153,10 +153,31 @@
 			    sx = ev.clientX;
 			    sy = ev.clientY;
 			};
+
+			window.touchstart = function(ev) {
+			    down = true;
+			    sx = ev.clientX;
+			    sy = ev.clientY;
+			};
 			window.onmouseup = function() {
 			    down = false;
 			};
+
+			window.touchend = function() {
+			    down = false;
+			};
 			window.onmousemove = function(ev) {
+			    if (down) {
+			        var dx = ev.clientX - sx;
+			        var dy = ev.clientY - sy;
+			        scatterPlot.rotation.y += dx * 0.01;
+			        camera.position.y += dy;
+			        sx += dx;
+			        sy += dy;
+			    }
+			}
+
+			window.touchmove = function(ev) {
 			    if (down) {
 			        var dx = ev.clientX - sx;
 			        var dy = ev.clientY - sy;

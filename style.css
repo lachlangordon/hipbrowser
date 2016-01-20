@@ -1,30 +1,43 @@
 body {
 	background: #000;
 	color: #e7eaee;
+	font-size: 20px;
 }
 
 a {
-	color: #4d801b;
+	color: #e7eaee;
 	text-decoration: none;
-	padding: 3px;
+	padding: 1em;
+	background: #4d801b;
+	border: 2px solid #457318;
+
+	-webkit-border-top-right-radius: 25px;
+	-webkit-border-bottom-left-radius: 25px;
+	-moz-border-radius-topright: 25px;
+	-moz-border-radius-bottomleft: 25px;
+	border-top-right-radius: 25px;
+	border-bottom-left-radius: 25px;
 }
 
 .header {
 	background: #123456;
-	padding-bottom: 5px;
+	padding-bottom: 1em;
 }
 
 .filters-box {
 	background: #102e4d;
+	overflow: overlay;
+	padding: 3em;
 }
 
 h1 {
 	margin-top: 0;
-	padding-top: 10px;
-	padding-left: 10px;
+	padding-top: 2em;
+	padding-left: 2em;
+	font-size: 30px;
 }
 
 label {
 	float: left;
-	margin-right: 10px;
+	margin-right: 1em;
 }
