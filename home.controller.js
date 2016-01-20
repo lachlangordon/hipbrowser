@@ -157,8 +157,10 @@
 			function handleStart(ev) {
 				ev.preventDefault();
 				down = true;
-			    sx = ev.clientX;
-			    sy = ev.clientY;
+
+				var touchobj = ev.changedTouches[0];
+			    sx = parseInt(touchobj.clientX);
+			    sy = parseInt(touchobj.clientY);
 			}
 
 			function handleEnd(ev) {
@@ -166,10 +168,11 @@
 			}
 
 			function handleMove(ev) {
+				var touchobj = ev.changedTouches[0];
 				if (down) {
 					ev.preventDefault();
-			        var dx = ev.clientX - sx;
-			        var dy = ev.clientY - sy;
+			        var dx = parseInt(touchobj.clientX) - sx;
+			        var dy = parseInt(touchobj.clientY - sy);
 			        scatterPlot.rotation.y += dx * 0.01;
 			        camera.position.y += dy;
 			        sx += dx;
