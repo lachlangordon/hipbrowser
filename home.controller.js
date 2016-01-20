@@ -149,10 +149,10 @@
 			    sy = 0;
 
 			var canvas_el = document.getElementsByTagName("canvas")[0];
-			canvas.addEventListener("touchstart", handleStart, false);
-			canvas.addEventListener("touchend", handleEnd, false);
-			canvas.addEventListener("touchcancel", handleEnd, false);
-			canvas.addEventListener("touchmove", handleMove, false);
+			window.addEventListener("touchstart", handleStart, false);
+			window.addEventListener("touchend", handleEnd, false);
+			window.addEventListener("touchcancel", handleEnd, false);
+			window.addEventListener("touchmove", handleMove, false);
 
 			function handleStart(ev) {
 				ev.preventDefault();
