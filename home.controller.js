@@ -154,10 +154,10 @@
 			    sy = 0;
 
 			var canvas_el = document.getElementsByTagName("canvas")[0];
-			window.addEventListener("touchstart", handleStart, false);
-			window.addEventListener("touchend", handleEnd, false);
-			window.addEventListener("touchcancel", handleEnd, false);
-			window.addEventListener("touchmove", handleMove, false);
+			canvas_el.addEventListener("touchstart", handleStart, false);
+			canvas_el.addEventListener("touchend", handleEnd, false);
+			canvas_el.addEventListener("touchcancel", handleEnd, false);
+			canvas_el.addEventListener("touchmove", handleMove, false);
 
 			function handleStart(ev) {
 				ev.preventDefault();
@@ -185,17 +185,17 @@
 			    }
 			}
     
-			window.onmousedown = function(ev) {
+			canvas_el.onmousedown = function(ev) {
 			    down = true;
 			    sx = ev.clientX;
 			    sy = ev.clientY;
 			};
 
-			window.onmouseup = function() {
+			canvas_el.onmouseup = function() {
 			    down = false;
 			};
 
-			window.onmousemove = function(ev) {
+			canvas_el.onmousemove = function(ev) {
 			    if (down) {
 			        var dx = ev.clientX - sx;
 			        var dy = ev.clientY - sy;
@@ -207,7 +207,7 @@
 			}
 
 			var animating = false;
-			window.ondblclick = function() {
+			canvas_el.ondblclick = function() {
 			    animating = !animating;
 			};
 
