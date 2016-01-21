@@ -42,3 +42,7 @@ label {
 	float: left;
 	margin-right: 1em;
 }
+
+input {
+	font-size: 20px;
+}
