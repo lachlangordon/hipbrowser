@@ -36,7 +36,12 @@
 		}
 
 		function rerenderStars() {
-			vm.filteredstars = $filter('filter')(vm.stars, function (value, index, array) {return value.distly < vm.filter.maxDist;})
+			vm.filteredstars = $filter('filter')(vm.stars, function (value, index, array) {return value.distly < vm.filter.maxDist;});
+			vm.filteredstars = $filter('filter')(vm.stars, function (value, index, array) {return value.distly > vm.filter.minDist;});
+			vm.filteredstars = $filter('filter')(vm.stars, function (value, index, array) {return value.lum < vm.filter.maxLum;});
+			vm.filteredstars = $filter('filter')(vm.stars, function (value, index, array) {return value.lum > vm.filter.minLum;});
+			vm.filteredstars = $filter('filter')(vm.stars, function (value, index, array) {return value.absmag > vm.filter.maxMag;});
+			vm.filteredstars = $filter('filter')(vm.stars, function (value, index, array) {return value.absmag < vm.filter.minMag;});
 			jQuery('.webgl').remove();
 
 			renderStarMap();
@@ -147,25 +152,49 @@
 			var down = false;
 			var sx = 0,
 			    sy = 0;
-			    
+
+			var canvas_el = document.getElementsByTagName("canvas")[0];
+			window.addEventListener("touchstart", handleStart, false);
+			window.addEventListener("touchend", handleEnd, false);
+			window.addEventListener("touchcancel", handleEnd, false);
+			window.addEventListener("touchmove", handleMove, false);
+
+			function handleStart(ev) {
+				ev.preventDefault();
+				down = true;
+
+				var touchobj = ev.changedTouches[0];
+			    sx = parseInt(touchobj.clientX);
+			    sy = parseInt(touchobj.clientY);
+			}
+
+			function handleEnd(ev) {
+				down = false;
+			}
+
+			function handleMove(ev) {
+				var touchobj = ev.changedTouches[0];
+				if (down) {
+					ev.preventDefault();
+			        var dx = parseInt(touchobj.clientX) - sx;
+			        var dy = parseInt(touchobj.clientY - sy);
+			        scatterPlot.rotation.y += dx * 0.01;
+			        camera.position.y += dy;
+			        sx += dx;
+			        sy += dy;
+			    }
+			}
+    
 			window.onmousedown = function(ev) {
 			    down = true;
 			    sx = ev.clientX;
 			    sy = ev.clientY;
 			};
 
-			window.touchstart = function(ev) {
-			    down = true;
-			    sx = ev.clientX;
-			    sy = ev.clientY;
-			};
 			window.onmouseup = function() {
 			    down = false;
 			};
 
-			window.touchend = function() {
-			    down = false;
-			};
 			window.onmousemove = function(ev) {
 			    if (down) {
 			        var dx = ev.clientX - sx;
@@ -177,16 +206,6 @@
 			    }
 			}
 
-			window.touchmove = function(ev) {
-			    if (down) {
-			        var dx = ev.clientX - sx;
-			        var dy = ev.clientY - sy;
-			        scatterPlot.rotation.y += dx * 0.01;
-			        camera.position.y += dy;
-			        sx += dx;
-			        sy += dy;
-			    }
-			}
 			var animating = false;
 			window.ondblclick = function() {
 			    animating = !animating;
