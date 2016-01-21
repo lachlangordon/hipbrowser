@@ -3,26 +3,39 @@
 
 		<div class="input-group">
 			<h4>Distance (Lightyears)</h4>
-			<input id="maxDist" type="number" name="maxDist" ng-model="vm.filter.maxDist">
-			<label for="maxDist">Max Distance</label>
-			<input id="minDist" type="number" name="minDist" ng-model="vm.filter.minDist">
-			<label for="minDist">Min Distance</label>
+
+			<div class="input-box">
+				<input id="maxDist" type="number" name="maxDist" ng-model="vm.filter.maxDist">
+				<label for="maxDist">Max Distance</label>
+			</div>
+			<div class="input-box">
+				<input id="minDist" type="number" name="minDist" ng-model="vm.filter.minDist">
+				<label for="minDist">Min Distance</label>
+			</div>
 		</div>
 
 		<div class="input-group">
 			<h4>Luminosity</h4>
-			<input id="maxLum" type="number" name="maxLum" ng-model="vm.filter.maxLum" step="0.1">
-			<label for="maxLum">Max Luminosity</label>
-			<input id="minLum" type="number" name="minLum" ng-model="vm.filter.minLum" step="0.1">
-			<label for="minLum">Min Distance</label>
+			<div class="input-box">
+				<input id="maxLum" type="number" name="maxLum" ng-model="vm.filter.maxLum" step="0.1">
+				<label for="maxLum">Max Luminosity</label>
+			</div>
+			<div class="input-box">
+				<input id="minLum" type="number" name="minLum" ng-model="vm.filter.minLum" step="0.1">
+				<label for="minLum">Min Luminosity</label>
+			</div>
 		</div>
 
 		<div class="input-group">
 			<h4>Absolute Magnitude</h4>
-			<input id="maxMag" type="number" name="maxMag" ng-model="vm.filter.maxMag" step="0.1">
-			<label for="maxMag">Max Magnitude</label>
-			<input id="minMag" type="number" name="minMag" ng-model="vm.filter.minMag" step="0.1">
-			<label for="minLum">Min Magnitude</label>
+			<div class="input-box">
+				<input id="maxMag" type="number" name="maxMag" ng-model="vm.filter.maxMag" step="0.1">
+				<label for="maxMag">Max Magnitude</label>
+			</div>
+			<div class="input-box">
+				<input id="minMag" type="number" name="minMag" ng-model="vm.filter.minMag" step="0.1">
+				<label for="minLum">Min Magnitude</label>
+			</div>
 		</div>
 
 		<a href="" ng-click="vm.rerenderStars()">Reload Star Map</a>

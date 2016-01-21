@@ -10,6 +10,7 @@ a {
 	padding: 1em;
 	background: #4d801b;
 	border: 2px solid #457318;
+	float: right;
 
 	-webkit-border-top-right-radius: 25px;
 	-webkit-border-bottom-left-radius: 25px;
