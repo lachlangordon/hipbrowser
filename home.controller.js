@@ -35,13 +35,16 @@
 			});
 		}
 
+					if (!vm.filter.maxDist) {return true;}
+
+
 		function rerenderStars() {
-			vm.filteredstars = $filter('filter')(vm.stars, function (value, index, array) {return value.distly < vm.filter.maxDist;});
-			vm.filteredstars = $filter('filter')(vm.stars, function (value, index, array) {return value.distly > vm.filter.minDist;});
-			vm.filteredstars = $filter('filter')(vm.stars, function (value, index, array) {return value.lum < vm.filter.maxLum;});
-			vm.filteredstars = $filter('filter')(vm.stars, function (value, index, array) {return value.lum > vm.filter.minLum;});
-			vm.filteredstars = $filter('filter')(vm.stars, function (value, index, array) {return value.absmag > vm.filter.maxMag;});
-			vm.filteredstars = $filter('filter')(vm.stars, function (value, index, array) {return value.absmag < vm.filter.minMag;});
+			vm.filteredstars = $filter('filter')(vm.stars, function (value, index, array) { if (!vm.filter.maxDist) {return true;} return value.distly < vm.filter.maxDist;});
+			vm.filteredstars = $filter('filter')(vm.stars, function (value, index, array) { if (!vm.filter.minDist) {return true;} return value.distly > vm.filter.minDist;});
+			vm.filteredstars = $filter('filter')(vm.stars, function (value, index, array) { if (!vm.filter.maxLum) {return true;} return value.lum < vm.filter.maxLum;});
+			vm.filteredstars = $filter('filter')(vm.stars, function (value, index, array) { if (!vm.filter.minLum) {return true;} return value.lum > vm.filter.minLum;});
+			vm.filteredstars = $filter('filter')(vm.stars, function (value, index, array) { if (!vm.filter.maxMag) {return true;} return value.absmag > vm.filter.maxMag;});
+			vm.filteredstars = $filter('filter')(vm.stars, function (value, index, array) {if (!vm.filter.minMag) {return true;} return value.absmag < vm.filter.minMag;});
 			jQuery('.webgl').remove();
 
 			renderStarMap();
